@@ -1,0 +1,189 @@
+import java.nio.file.*;
+import java.io.*;
+
+
+
+public class testing{
+
+    public static void createFile(String path){
+
+        Path file = Paths.get(path); // Store Path created in the String above into the Data type of Path in a variable called "file" by converting it through Paths.get().
+        try {
+            Files.createFile(file);
+            System.out.println("CREATED " + path);
+        } catch (IOException x) {
+            System.out.println("Error!");
+        }
+    }
+
+    public static void createFolder(String path){
+
+        new File(path).mkdirs();
+        System.out.println("CREATED " + path);
+    }
+
+    public static void main(String[] args){
+
+        // Short Name for the Mod. No Spaces or Capital Letters, please.
+        String modName = "abdicate";
+
+        // Long Name for the Mod.
+        String modFullName = "Abdicate";
+
+        // Save Location for the Mod.
+        String saveLocation = "C:\\Users\\syawi\\Documents\\Paradox Interactive\\Crusader Kings II\\mod";
+
+        System.out.println("CREATING " + modName);
+
+        // Names of Folder to be created inside the Mod Folder. Always keep "gfx" at the last index.
+        String folders[] = {"decisions", "events", "interface", "localisation", "gfx"};
+
+        // Names of Files to be created instead the Folders above. Index No. Corresponds.
+        String files[] = {modName + "_decisions.txt", modName + "_event.txt", "GFX_" + modName + ".gfx", modName + "_localisation.csv" };
+
+        // Creating Main Mod Folder.
+        createFolder(saveLocation + "\\" + modName);
+
+        // Creating .mod file outside Main Mod Folder
+        createFile(saveLocation+"\\"+modName+".mod");
+
+        // Creating Folder from the Array folder[].
+        for(int i = 0; i< folders.length; i++) {
+            createFolder(saveLocation + "\\" + modName + "\\" + folders[i]);
+        }
+
+        // Creating Folder Interface inside the gfx folder created in the loop above. Done manually.
+        createFolder(saveLocation + "\\" + modName + "\\" + "gfx" + "\\" + "interface");
+
+        // Creating Files inside the Folders created above. Index no. correspond to the Folder Index no. Goes from 0 to 3.
+        for(int j = 0; j < 4; j++) {
+            createFile(saveLocation + "\\" + modName + "\\" + folders[j] + "\\" + files[j]);
+        }
+
+        // Writing Text to .mod file outside the Main Mod Folder.
+        try {
+            PrintWriter writer = new PrintWriter(saveLocation+"\\"+modName+".mod" , "UTF-8");
+            writer.println("name = \"" + modFullName + "\"");
+            writer.println("path = \"mod/" + modName + "\"" );
+            writer.close();
+        } catch (IOException x) {
+            System.out.println("Couldn't write to .mod file.");
+        }
+
+        // Writing Text to Decisions -> _decisions.txt.
+        try {
+            PrintWriter writer = new PrintWriter(saveLocation + "\\" + modName + "\\" + "decisions" + "\\" + modName + "_decisions.txt" , "UTF-8");
+            writer.println("decisions = {");
+            writer.println("\t" + modName + " = {");
+            writer.println("\t\tpotential = {");
+            writer.println("\t\t}");
+            writer.println("\t\tallow = {");
+            writer.println("\t\t}");
+            writer.println("\t\teffect = {");
+            writer.println("\t\t\tcharacter_event = { id = " + modName + ".250001" + " }");
+            writer.println("\t\t}");
+            writer.println("\t\trevoke_allowed = {");
+            writer.println("\t\t\talways = no");
+            writer.println("\t\t}");
+            writer.println("\t\tai_will_do = {");
+            writer.println("\t\t\tfactor = 0");
+            writer.println("\t\t}");
+            writer.println("\t}");
+            writer.println("}");
+            writer.close();
+        } catch (IOException x) {
+            System.out.println("Couldn't write Decisions.");
+        }
+
+        // Writing Text to Events -> _event.txt.
+        try {
+            PrintWriter writer = new PrintWriter(saveLocation + "\\" + modName + "\\" + "events" + "\\" + modName + "_event.txt" , "UTF-8");
+            writer.println("namespace = " + modName);
+            writer.println("character_event = {");
+            writer.println("\tid = " + modName + ".250001");
+            writer.println("\tdesc = " + modName + ".250001" + ".desc");
+            writer.println("\tpicture = \"GFX_evt_council\"");
+            writer.println("\n");
+            writer.println("\tis_triggered_only = yes");
+            writer.println("\n");
+            writer.println("\timmediate = {");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250001.opta");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250002.opta");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250003.opta");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250004.opta");
+            writer.println("\t}");
+            writer.println("}");
+            writer.close();
+        } catch (IOException x) {
+            System.out.println("Couldn't write Decisions.");
+        }
+
+        // Writing Text to Events -> _event.txt.
+        try {
+            PrintWriter writer = new PrintWriter(saveLocation + "\\" + modName + "\\" + "events" + "\\" + modName + "_event.txt" , "UTF-8");
+            writer.println("namespace = " + modName);
+            writer.println("character_event = {");
+            writer.println("\tid = " + modName + ".250001");
+            writer.println("\tdesc = " + modName + ".250001" + ".desc");
+            writer.println("\tpicture = \"GFX_evt_council\"");
+            writer.println("\n");
+            writer.println("\tis_triggered_only = yes");
+            writer.println("\n");
+            writer.println("\timmediate = {");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250001.opta");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250002.opta");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250003.opta");
+            writer.println("\t}");
+            writer.println("\toption = {");
+            writer.println("\t\tname = " + modName + ".250004.opta");
+            writer.println("\t}");
+            writer.println("}");
+            writer.close();
+        } catch (IOException x) {
+            System.out.println("Couldn't write Decisions.");
+        }
+
+        // Writing Text to interface -> _gfx.txt.
+        try {
+            PrintWriter writer = new PrintWriter(saveLocation + "\\" + modName + "\\" + "interface" + "\\" + "GFX_" + modName + ".gfx" , "UTF-8");
+            writer.println("spriteTypes = {");
+            writer.println("\tspriteType = {");
+            writer.println("\t\tname = \"GFX_" + modName + "\"");
+            writer.println("\t\ttexturefile = \"gfx\\\\interface\\\\decision_icon_" + modName + ".dds\"");
+            writer.println("\t}");
+            writer.println("}");
+            writer.close();
+        } catch (IOException x) {
+            System.out.println("Couldn't write Decisions.");
+        }
+
+        // Writing Text to localisation -> _localisation.csv.
+        try {
+            PrintWriter writer = new PrintWriter(saveLocation + "\\" + modName + "\\" + "localisation" + "\\" + modName + "_localisation.csv" , "UTF-8");
+            writer.println(modName + ";" + modFullName + ";;;;;;;;;x");
+            writer.println(modName + "_desc;" + "Text Here" + ";;;;;;;;;x");
+            writer.println(modName + ".250001.desc;" + "Text Here" + ";;;;;;;;;x");
+            writer.println(modName + ".250001.opta;" + "Text Here" + ";;;;;;;;;x");
+            writer.println(modName + ".250002.opta;" + "Text Here" + ";;;;;;;;;x");
+            writer.println(modName + ".250003.opta;" + "Text Here" + ";;;;;;;;;x");
+            writer.println(modName + ".250004.opta;" + "Text Here" + ";;;;;;;;;x");
+            writer.close();
+        } catch (IOException x) {
+            System.out.println("Couldn't write Decisions.");
+        }
+    }
+}
