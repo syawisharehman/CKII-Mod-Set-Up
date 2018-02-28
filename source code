@@ -31,7 +31,7 @@ public class testing{
         String modFullName = "Abdicate";
 
         // Save Location for the Mod.
-        String saveLocation = "D:\\CKII Mods";
+        String saveLocation = "C:\\Users\\syawi\\Documents\\Paradox Interactive\\Crusader Kings II\\mod";
 
         System.out.println("CREATING " + modName);
 
@@ -180,6 +180,7 @@ public class testing{
             writer.println(modName + ".250001.opta;" + "Text Here" + ";;;;;;;;;x");
             writer.println(modName + ".250002.opta;" + "Text Here" + ";;;;;;;;;x");
             writer.println(modName + ".250003.opta;" + "Text Here" + ";;;;;;;;;x");
+            writer.println(modName + ".250004.opta;" + "Text Here" + ";;;;;;;;;x");
             writer.close();
         } catch (IOException x) {
             System.out.println("Couldn't write Decisions.");
